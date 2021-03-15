@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -56,7 +57,7 @@ namespace Integracja
             }
 
         }
-        private void saveDataView()
+     /*   private void saveDataView()
         {
             Data data = new Data();
             Console.WriteLine("Licznik k: " + k);
@@ -76,48 +77,41 @@ namespace Integracja
             
             Console.WriteLine("Licznik k: "+k);
 
-        }
+        }*/
         private void WriteIntoDataGridView(String filePath)
         {
-            StreamReader reader = new StreamReader(filePath);
-            /* string [] columnName=file*/
-            DataTable dt = new DataTable();
+
+            dataGridView.ReadOnly = false;
+            string[] lines = System.IO.File.ReadAllLines(filePath);
+            string[] values = new string[lines.Length];
             
-            while (reader.ReadLine()!=null)
+           for(int i = 0; i < lines.Length; i++)
             {
-                
-                DataRow dr = dt.NewRow();
-                
-                string[] values = reader.ReadLine().Split(';');
-                string[] collumn = new string[16];
-                for(int i = 0; i <dataGridView.Columns.Count; i++)
+                Console.WriteLine("Licznik lin " + i + " values" + lines[i].ToString());
+                values = lines[i].Split(';');
+                i= dataGridView.Rows.Add();
+                for (int j = 0; j <values.Length-1; j++)
                 {
-                    collumn[i] = dataGridView.Columns[i].Name;
+                   dataGridView.Rows[i].Cells[j].Value = values[j].ToString();
+                  
                 }
-               for(int i = 0; i < collumn.Length; i++)
-                {
-                    dt.Columns.Add(collumn[i]);
-                }
-                    
-                
-                for (int i = 2; i <values.Length; i++)
-                {
-                   
-                        dr[i] = values[i];
-                    
-                    
-                }
-                dt.Rows.Add(dr);
+               
+
+
+
+
             }
-            reader.Close();
-            dataGridView.DataSource = dt;
+          
+
+          
+
         }
         private void ReadFromDataGridView(String filePath)
         {
             var sb = new StringBuilder();
 
             var headers = dataGridView.Columns.Cast<DataGridViewColumn>();
-            sb.AppendLine(string.Join(",", headers.Select(column => "\"" + column.HeaderText + "\"").ToArray()));
+            sb.AppendLine(string.Join(";", headers.Select(column => "\"" + column.HeaderText + "\"").ToArray()));
 
             foreach (DataGridViewRow row in dataGridView.Rows)
             {
@@ -125,6 +119,51 @@ namespace Integracja
                 sb.AppendLine(string.Join(";", cells.Select(cell => "\"" + cell.Value + "\"").ToArray()));
             }
             System.IO.File.WriteAllText(filePath, sb.ToString());
+        }
+
+        private void dataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            int columnIndex = e.ColumnIndex;
+           if(columnIndex==1 || columnIndex==6 || columnIndex==7)
+            {
+                string value = e.FormattedValue.ToString();
+                if (!value.All(char.IsDigit))
+                {
+                    dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Red;
+                    MessageBox.Show(this,"Niepoprawny typ liczbowy","Bład",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                }
+                else
+                {
+                    dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.White;
+                }
+            }
+           if(columnIndex==5 || columnIndex==13 || columnIndex==11)
+            {
+                string value = e.FormattedValue.ToString();
+                if (!value.All(char.IsLetterOrDigit))
+                {
+                    dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Red;
+                    MessageBox.Show(this, "Niepoprawny format", "Bład", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.White;
+                }
+            }
+            if (columnIndex == 3 || columnIndex == 4 || columnIndex == 11 && columnIndex==14)
+            {
+                string value = e.FormattedValue.ToString();
+                if (!value.All(char.IsLetter))
+                {
+                    dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Red;
+                    MessageBox.Show(this, "Niepoprawny typ znakowy", "Bład", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.White;
+                }
+            }
+
         }
     }
 }

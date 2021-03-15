@@ -30,7 +30,6 @@ namespace Integracja
         private void InitializeComponent()
         {
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.screen_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sceen_resolution = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,7 +54,6 @@ namespace Integracja
             // 
             this.dataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
             this.brand,
             this.screen_size,
             this.sceen_resolution,
@@ -74,14 +72,11 @@ namespace Integracja
             this.dataGridView.Location = new System.Drawing.Point(31, 96);
             this.dataGridView.MaximumSize = new System.Drawing.Size(1600, 1600);
             this.dataGridView.Name = "dataGridView";
+            this.dataGridView.AllowUserToAddRows = true;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(1600, 814);
             this.dataGridView.TabIndex = 0;
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "ID";
-            this.Id.Name = "Id";
+            this.dataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_CellValidating);
             // 
             // brand
             // 
@@ -196,7 +191,9 @@ namespace Integracja
         }
 
         #endregion
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.Button read_file;
+        private System.Windows.Forms.Button save_file;
+        public System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn brand;
         private System.Windows.Forms.DataGridViewTextBoxColumn screen_size;
         private System.Windows.Forms.DataGridViewTextBoxColumn sceen_resolution;
@@ -212,9 +209,6 @@ namespace Integracja
         private System.Windows.Forms.DataGridViewTextBoxColumn gpu_ram;
         private System.Windows.Forms.DataGridViewTextBoxColumn os;
         private System.Windows.Forms.DataGridViewTextBoxColumn optical_drive;
-        private System.Windows.Forms.Button read_file;
-        private System.Windows.Forms.Button save_file;
-        public System.Windows.Forms.DataGridView dataGridView;
     }
 }
 
