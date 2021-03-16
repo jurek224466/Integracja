@@ -72,7 +72,6 @@ namespace Integracja
             this.dataGridView.Location = new System.Drawing.Point(31, 96);
             this.dataGridView.MaximumSize = new System.Drawing.Size(1600, 1600);
             this.dataGridView.Name = "dataGridView";
-            this.dataGridView.AllowUserToAddRows = true;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(1600, 814);
             this.dataGridView.TabIndex = 0;
@@ -182,9 +181,8 @@ namespace Integracja
             this.Controls.Add(this.read_file);
             this.Controls.Add(this.dataGridView);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Integracja- Jerzy Antoniuk";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 
