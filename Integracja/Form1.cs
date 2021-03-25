@@ -10,6 +10,8 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Integracja
 {
@@ -185,6 +187,81 @@ namespace Integracja
                 {
                     dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.White;
                 }
+            }
+
+
+        }
+
+        private void xmlExport_Click(object sender, EventArgs e)
+        {
+
+            String fileName="";
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "Pliki xml (*.xml)|*.xml";
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+
+                fileName = save.FileName;
+
+            }
+            DataSet dataSet = new DataSet("Laptops");
+            int j = 0;
+            var dt = new DataTable();
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                if (column.Visible)
+                {
+
+                    dt.Columns.Add(j, typeof(Int32));
+                    dt.Columns[j].ColumnName = j.ToString();
+                    j++;
+
+                }
+            }
+          for(int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                dt.Columns[i].ColumnName = dataGridView.Columns[i].Name;
+              
+            }
+
+
+            object[] cellValues = new object[dataGridView.Columns.Count];
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                for (int i = 0; i < row.Cells.Count; i++)
+                {
+                    cellValues[i] = row.Cells[i].Value;
+                }
+                dt.Rows.Add(cellValues);
+                
+            }
+            dataSet.Tables.Add(dt);
+            dataSet.WriteXml(fileName);
+            
+
+
+        }
+
+
+
+        private void importXML_Click(object sender, EventArgs e)
+        {
+
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter = "Pliki tekstowe (*.xml)|*.xml";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                XmlReader xmlFile = XmlReader.Create(open.FileName, new XmlReaderSettings());
+                DataSet dataSet = new DataSet();
+                //Read xml to dataset
+                dataSet.ReadXml(xmlFile);
+                //Pass empdetails table to datagridview datasource
+                dataGridView.DataSource = dataSet.Tables["empdetails"];
+                //Close xml reader
+                xmlFile.Close();
+                xmlFile.Close();
+
+
             }
 
 

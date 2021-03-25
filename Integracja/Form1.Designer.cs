@@ -47,6 +47,8 @@ namespace Integracja
             this.optical_drive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.read_file = new System.Windows.Forms.Button();
             this.save_file = new System.Windows.Forms.Button();
+            this.xmlExport = new System.Windows.Forms.Button();
+            this.importXML = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -154,7 +156,7 @@ namespace Integracja
             // 
             // read_file
             // 
-            this.read_file.Location = new System.Drawing.Point(76, 27);
+            this.read_file.Location = new System.Drawing.Point(77, 29);
             this.read_file.Name = "read_file";
             this.read_file.Size = new System.Drawing.Size(128, 46);
             this.read_file.TabIndex = 1;
@@ -172,11 +174,33 @@ namespace Integracja
             this.save_file.UseVisualStyleBackColor = true;
             this.save_file.Click += new System.EventHandler(this.save_file_Click);
             // 
+            // xmlExport
+            // 
+            this.xmlExport.Location = new System.Drawing.Point(406, 30);
+            this.xmlExport.Name = "xmlExport";
+            this.xmlExport.Size = new System.Drawing.Size(124, 44);
+            this.xmlExport.TabIndex = 3;
+            this.xmlExport.Text = "Exportuj do XML";
+            this.xmlExport.UseVisualStyleBackColor = true;
+            this.xmlExport.Click += new System.EventHandler(this.xmlExport_Click);
+            // 
+            // importXML
+            // 
+            this.importXML.Location = new System.Drawing.Point(548, 30);
+            this.importXML.Name = "importXML";
+            this.importXML.Size = new System.Drawing.Size(140, 47);
+            this.importXML.TabIndex = 4;
+            this.importXML.Text = "Importuj do XML";
+            this.importXML.UseVisualStyleBackColor = true;
+            this.importXML.Click += new System.EventHandler(this.importXML_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1899, 901);
+            this.Controls.Add(this.importXML);
+            this.Controls.Add(this.xmlExport);
             this.Controls.Add(this.save_file);
             this.Controls.Add(this.read_file);
             this.Controls.Add(this.dataGridView);
@@ -207,6 +231,8 @@ namespace Integracja
         private System.Windows.Forms.DataGridViewTextBoxColumn gpu_ram;
         private System.Windows.Forms.DataGridViewTextBoxColumn os;
         private System.Windows.Forms.DataGridViewTextBoxColumn optical_drive;
+        private System.Windows.Forms.Button xmlExport;
+        private System.Windows.Forms.Button importXML;
     }
 }
 
