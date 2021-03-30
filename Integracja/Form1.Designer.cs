@@ -30,9 +30,13 @@ namespace Integracja
         private void InitializeComponent()
         {
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.read_file = new System.Windows.Forms.Button();
+            this.save_file = new System.Windows.Forms.Button();
+            this.xmlExport = new System.Windows.Forms.Button();
+            this.importXML = new System.Windows.Forms.Button();
             this.brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.screen_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sceen_resolution = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.screen_resolution = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.type_screen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.touch_screen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cpu = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,10 +49,6 @@ namespace Integracja
             this.gpu_ram = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.os = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optical_drive = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.read_file = new System.Windows.Forms.Button();
-            this.save_file = new System.Windows.Forms.Button();
-            this.xmlExport = new System.Windows.Forms.Button();
-            this.importXML = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,7 +58,7 @@ namespace Integracja
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.brand,
             this.screen_size,
-            this.sceen_resolution,
+            this.screen_resolution,
             this.type_screen,
             this.touch_screen,
             this.cpu,
@@ -77,7 +77,46 @@ namespace Integracja
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(1600, 814);
             this.dataGridView.TabIndex = 0;
-            this.dataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_CellValidating);
+            // 
+            // read_file
+            // 
+            this.read_file.Location = new System.Drawing.Point(77, 29);
+            this.read_file.Name = "read_file";
+            this.read_file.Size = new System.Drawing.Size(128, 46);
+            this.read_file.TabIndex = 1;
+            this.read_file.Text = "Wczytaj z pliku";
+            this.read_file.UseVisualStyleBackColor = true;
+            this.read_file.Click += new System.EventHandler(this.read_file_Click);
+            // 
+            // save_file
+            // 
+            this.save_file.Location = new System.Drawing.Point(221, 27);
+            this.save_file.Name = "save_file";
+            this.save_file.Size = new System.Drawing.Size(179, 47);
+            this.save_file.TabIndex = 2;
+            this.save_file.Text = "Zapisz do pliku";
+            this.save_file.UseVisualStyleBackColor = true;
+            this.save_file.Click += new System.EventHandler(this.save_file_Click);
+            // 
+            // xmlExport
+            // 
+            this.xmlExport.Location = new System.Drawing.Point(406, 30);
+            this.xmlExport.Name = "xmlExport";
+            this.xmlExport.Size = new System.Drawing.Size(124, 44);
+            this.xmlExport.TabIndex = 3;
+            this.xmlExport.Text = "Exportuj do XML";
+            this.xmlExport.UseVisualStyleBackColor = true;
+            this.xmlExport.Click += new System.EventHandler(this.xmlExport_Click);
+            // 
+            // importXML
+            // 
+            this.importXML.Location = new System.Drawing.Point(548, 30);
+            this.importXML.Name = "importXML";
+            this.importXML.Size = new System.Drawing.Size(140, 47);
+            this.importXML.TabIndex = 4;
+            this.importXML.Text = "Importuj do XML";
+            this.importXML.UseVisualStyleBackColor = true;
+            this.importXML.Click += new System.EventHandler(this.importXML_Click);
             // 
             // brand
             // 
@@ -86,13 +125,13 @@ namespace Integracja
             // 
             // screen_size
             // 
-            this.screen_size.HeaderText = "Wielkość ekranu";
+            this.screen_size.HeaderText = "Wielkosc ";
             this.screen_size.Name = "screen_size";
             // 
-            // sceen_resolution
+            // screen_resolution
             // 
-            this.sceen_resolution.HeaderText = "Rozdzielczość ekranu";
-            this.sceen_resolution.Name = "sceen_resolution";
+            this.screen_resolution.HeaderText = "Rozdzielczosc";
+            this.screen_resolution.Name = "screen_resolution";
             // 
             // type_screen
             // 
@@ -101,7 +140,7 @@ namespace Integracja
             // 
             // touch_screen
             // 
-            this.touch_screen.HeaderText = "Czz jest dotykowy ?";
+            this.touch_screen.HeaderText = "Czy jest dotykowy ?";
             this.touch_screen.Name = "touch_screen";
             // 
             // cpu
@@ -154,46 +193,6 @@ namespace Integracja
             this.optical_drive.HeaderText = "Napęd optyczny";
             this.optical_drive.Name = "optical_drive";
             // 
-            // read_file
-            // 
-            this.read_file.Location = new System.Drawing.Point(77, 29);
-            this.read_file.Name = "read_file";
-            this.read_file.Size = new System.Drawing.Size(128, 46);
-            this.read_file.TabIndex = 1;
-            this.read_file.Text = "Wczytaj z pliku";
-            this.read_file.UseVisualStyleBackColor = true;
-            this.read_file.Click += new System.EventHandler(this.read_file_Click);
-            // 
-            // save_file
-            // 
-            this.save_file.Location = new System.Drawing.Point(221, 27);
-            this.save_file.Name = "save_file";
-            this.save_file.Size = new System.Drawing.Size(179, 47);
-            this.save_file.TabIndex = 2;
-            this.save_file.Text = "Zapisz do pliku";
-            this.save_file.UseVisualStyleBackColor = true;
-            this.save_file.Click += new System.EventHandler(this.save_file_Click);
-            // 
-            // xmlExport
-            // 
-            this.xmlExport.Location = new System.Drawing.Point(406, 30);
-            this.xmlExport.Name = "xmlExport";
-            this.xmlExport.Size = new System.Drawing.Size(124, 44);
-            this.xmlExport.TabIndex = 3;
-            this.xmlExport.Text = "Exportuj do XML";
-            this.xmlExport.UseVisualStyleBackColor = true;
-            this.xmlExport.Click += new System.EventHandler(this.xmlExport_Click);
-            // 
-            // importXML
-            // 
-            this.importXML.Location = new System.Drawing.Point(548, 30);
-            this.importXML.Name = "importXML";
-            this.importXML.Size = new System.Drawing.Size(140, 47);
-            this.importXML.TabIndex = 4;
-            this.importXML.Text = "Importuj do XML";
-            this.importXML.UseVisualStyleBackColor = true;
-            this.importXML.Click += new System.EventHandler(this.importXML_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,10 +214,12 @@ namespace Integracja
         #endregion
         private System.Windows.Forms.Button read_file;
         private System.Windows.Forms.Button save_file;
+        private System.Windows.Forms.Button xmlExport;
+        private System.Windows.Forms.Button importXML;
         public System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn brand;
         private System.Windows.Forms.DataGridViewTextBoxColumn screen_size;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sceen_resolution;
+        private System.Windows.Forms.DataGridViewTextBoxColumn screen_resolution;
         private System.Windows.Forms.DataGridViewTextBoxColumn type_screen;
         private System.Windows.Forms.DataGridViewTextBoxColumn touch_screen;
         private System.Windows.Forms.DataGridViewTextBoxColumn cpu;
@@ -231,8 +232,6 @@ namespace Integracja
         private System.Windows.Forms.DataGridViewTextBoxColumn gpu_ram;
         private System.Windows.Forms.DataGridViewTextBoxColumn os;
         private System.Windows.Forms.DataGridViewTextBoxColumn optical_drive;
-        private System.Windows.Forms.Button xmlExport;
-        private System.Windows.Forms.Button importXML;
     }
 }
 

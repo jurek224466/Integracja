@@ -1,0 +1,74 @@
+           String fileName = "";
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "Pliki XML (*.xml)|*.xml";
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+
+                fileName = save.FileName;
+             
+
+               
+
+
+                DataSet dataSet = new DataSet("Laptops");
+                int j = 0;
+
+               
+                foreach (DataGridViewColumn column in dataGridView.Columns)
+                {
+                    table.Columns.Add();
+
+                }
+                for (int i = 0; i < table.Columns.Count; i++)
+                {
+                    dt.Columns[i].Caption = i.ToString();
+                }
+
+                for (int i = 0; i < dataGridView.Columns.Count; i++)
+                {
+
+                    dt.Columns[i].ColumnName = dataGridView.Columns[i].Name;
+
+                }
+
+
+                object[] cellValues = new object[dataGridView.Columns.Count];
+                foreach (DataGridViewRow row in dataGridView.Rows)
+                {
+                    
+                    for (int i = 0; i < row.Cells.Count; i++)
+                    {
+
+                        cellValues[i] = row.Cells[i].Value;
+                    }
+                    dt.Rows.Add(cellValues);
+
+                }
+                dataSet.Tables.Add(dt);
+                dataSet.WriteXml(fileName);
+
+*/
+                /* xmlFile.AppendChild(xmlDeclaration);
+                 DateTime date = DateTime.Now;
+
+                 XmlNode request = xmlFile.CreateElement($"laptops");
+                 for (int i = 0; i < 5; i++)
+                 {
+                     int licznik = i + 1;
+                     XmlNode transaction = xmlFile.CreateElement($"laptopid{licznik}");
+                     XmlNode transactionDetail = xmlFile.CreateElement("transactionDetail");
+                     XmlAttribute transactionId = xmlFile.CreateAttribute("transactionId");
+                     transactionId.Value = "123";
+                     transaction.Attributes.Append(transactionId);
+                     transactionDetail.Attributes.Append(transactionId);
+                     request.AppendChild(transaction);
+                     transaction.AppendChild(transactionDetail);
+
+                 }
+
+                 xmlFile.AppendChild(request);
+                 xmlFile.Save(save.FileName);
+ */
+
+
+
