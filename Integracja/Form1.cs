@@ -36,7 +36,7 @@ namespace Integracja
             if (open.ShowDialog() == DialogResult.OK)
             {
                 Files files = new Files(dataGridView);
-                files.WriteTextFileIntoDataGridView(open.FileName);
+                files.ImportTextFileToAplication(open.FileName);
 
             }
 
@@ -52,7 +52,7 @@ namespace Integracja
             if (save.ShowDialog() == DialogResult.OK)
             {
                 Files files = new Files(dataGridView);
-                files.ReadTextFileFromDataGridView(save.FileName);
+                files.ExportDatatoTextFile(save.FileName);
 
             }
 
@@ -140,7 +140,8 @@ namespace Integracja
 
         private void xmlExport_Click(object sender, EventArgs e)
         {
-            
+            XmlParsing export = new XmlParsing(dataGridView);
+            export.ExportXML();
         }
 
 

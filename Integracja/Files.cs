@@ -15,15 +15,13 @@ namespace Integracja
         {
             gui = item;
         }
-        public void WriteTextFileIntoDataGridView(String filePath)
+        public void ImportTextFileToAplication(String filePath)
         {
-
+            gui.Rows.Clear();
             gui.ReadOnly = false;
             string[] lines = System.IO.File.ReadAllLines(filePath);
             string[] values = new string[lines.Length];
 
-            /* if (gui.Rows.Count == 1)
-             {*/
             for (int i = 0; i < lines.Length; i++)
             {
 
@@ -33,7 +31,7 @@ namespace Integracja
                 {
                     if (values[j] == null || values[j] == "")
                     {
-                        gui.Rows[i].Cells[j].Value = "brak";
+                        gui.Rows[i].Cells[j].Value = "brak informacji";
 
                     }
                     else
@@ -51,7 +49,7 @@ namespace Integracja
 
 
         }
-        public void ReadTextFileFromDataGridView(String filePath)
+        public void ExportDatatoTextFile(String filePath)
         {
             var sb = new StringBuilder();
 
