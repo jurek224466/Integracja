@@ -35,8 +35,8 @@ namespace Integracja
             open.Filter = "Pliki tekstowe (*.txt)|*.txt";
             if (open.ShowDialog() == DialogResult.OK)
             {
-
-                WriteTextFileIntoDataGridView(open.FileName);
+                Files files = new Files(dataGridView);
+                files.WriteTextFileIntoDataGridView(open.FileName);
 
             }
 
@@ -51,71 +51,14 @@ namespace Integracja
             save.Filter = "Pliki tekstowe (*.txt)|*.txt";
             if (save.ShowDialog() == DialogResult.OK)
             {
-
-                ReadTextFileFromDataGridView(save.FileName);
+                Files files = new Files(dataGridView);
+                files.ReadTextFileFromDataGridView(save.FileName);
 
             }
 
         }
 
-        private void WriteTextFileIntoDataGridView(String filePath)
-        {
-
-            dataGridView.ReadOnly = false;
-            string[] lines = System.IO.File.ReadAllLines(filePath);
-            string[] values = new string[lines.Length];
-
-            /* if (dataGridView.Rows.Count == 1)
-             {*/
-            for (int i = 0; i < lines.Length; i++)
-            {
-
-                values = lines[i].Split(';');
-                i = dataGridView.Rows.Add();
-                for (int j = 0; j < values.Length - 1; j++)
-                {
-                    if (values[j] == null || values[j] == "")
-                    {
-                        dataGridView.Rows[i].Cells[j].Value = "brak";
-
-                    }
-                    else
-                    {
-                        dataGridView.Rows[i].Cells[j].Value = values[j].ToString();
-                    }
-
-
-                }
-
-            }
-
-
-
-
-
-        }
-        private void ReadTextFileFromDataGridView(String filePath)
-        {
-            var sb = new StringBuilder();
-
-            /*var headers = dataGridView.Columns.Cast<DataGridViewColumn>(); dodawanie nagłówków do plików
-            sb.AppendLine(string.Join(";", headers.Select(column => "\"" + column.HeaderText + "\"").ToArray()));*/
-
-            foreach (DataGridViewRow row in dataGridView.Rows)
-            {
-                if (row.Index < dataGridView.Rows.Count - 1)
-                {
-                    Console.WriteLine("Row index : " + row.Index);
-                    var cells = row.Cells.Cast<DataGridViewCell>();
-                    sb.AppendLine(string.Join(";", cells.Select(cell => "\"" + cell.Value + "\"").ToArray()));
-
-                }
-
-
-
-            }
-            System.IO.File.WriteAllText(filePath, sb.ToString());
-        }
+       
 
         private void dataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
@@ -197,67 +140,7 @@ namespace Integracja
 
         private void xmlExport_Click(object sender, EventArgs e)
         {
-            string filePath = "";
-            SaveFileDialog save = new SaveFileDialog();
-            save.Filter = "Pliki XML (*.xml)|*.xml";
-            if (save.ShowDialog() == DialogResult.OK)
-            {
-                filePath = save.FileName;
-            }
-            DateTime date = DateTime.Now;
-            XElement root = new XElement("Laptops","");
-            root.SetAttributeValue("moddate", date.ToString("yyyy-MM-dd T HH:mm:ss"));
-            XDocument document = new XDocument(root);
-            XElement size_screen = new XElement("size", "");
-            XElement resolution = new XElement("resolution", "");
-            XElement screen = new XElement("screen");
-            screen.SetAttributeValue("touch", "");
-            XElement screen_type = new XElement("type", "");
-            screen.Add(resolution);
-            screen.Add(size_screen);
-            screen.Add(screen_type);
-           root.Add(screen);
-            XElement procesor = new XElement("processor");
-            XElement processor_name = new XElement("name", "");
-            XElement physical_cores = new XElement("physical_cores", "");
-            XElement clock_speed = new XElement("clock_speed", "");
-            procesor.Add(processor_name);
-            procesor.Add(physical_cores);
-            procesor.Add(clock_speed);
-            root.Add(procesor);
-            XElement ram = new XElement("ram", "");
-            root.Add(ram);
-            XElement disc = new XElement("disc");
-            disc.SetAttributeValue("type", "");
-            XElement storage = new XElement("storage", "");
-            disc.Add(storage);
-            root.Add(disc);
-            XElement graphic_card = new XElement("graphic_card", "");
-            XElement name_card = new XElement("name", "");
-            graphic_card.Add(name_card);
-            XElement gpu_memory = new XElement("memory", "");
-            graphic_card.Add(gpu_memory);
-            root.Add(graphic_card);
-            XElement os = new XElement("os", "Windows 10");
-            root.Add(os);
-            XElement disc_reader = new XElement("disc_reader", "");
-            root.Add(disc_reader);
-            disc_reader.Add("Blue-ray");
-            document.Save(filePath);
-            object[] cellValues = new object[dataGridView.Columns.Count];
-            DataSet dataSet = new DataSet();
-            DataTable dt = new DataTable();
-            foreach (DataGridViewRow row in dataGridView.Rows)
-            {
-                for (int i = 0; i < row.Cells.Count; i++)
-                {
-                    cellValues[i] = row.Cells[i].Value;
-                }
-                dt.Rows.Add(cellValues);
-
-            }
-            dataSet.Tables.Add(dt);
-
+            
         }
 
 
@@ -265,28 +148,8 @@ namespace Integracja
         private void importXML_Click(object sender, EventArgs e)
         {
 
-            OpenFileDialog open = new OpenFileDialog();
-            open.Filter = "Pliki XML (*.xml)|*.xml";
-            if (open.ShowDialog() == DialogResult.OK)
-            {
-                XElement root = XElement.Load(open.FileName);
-                XElement os = root.Element("os");
-                XElement drive = root.Element("disc_reader");
-                string os_string = (string)os;
-                string optical_drive = (string)drive;
-                Console.WriteLine("Dane " + os_string + " " + optical_drive);
-
-                
-
-
-
-
-
-
-
-
-            }
-
+            XmlParsing import = new XmlParsing(dataGridView);
+            import.ImportXML();
 
         }
     }
