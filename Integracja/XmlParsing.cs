@@ -83,34 +83,36 @@ namespace Integracja
             {
                 filePath = save.FileName;
             }
-            if (filePath != null && filePath!="")
+            if (filePath != null && filePath != "")
             {
-                
+
                 DateTime date = DateTime.Now;
                 XElement root = new XElement("Laptops", "");
                 root.SetAttributeValue("moddate", date.ToString("yyyy-MM-dd T HH:mm:ss"));
-                XDocument document = new XDocument(root);
-                for (int i = 0; i < gui.Rows.Count-1; i++)
+                XDocument document = new XDocument();
+                document.AddFirst(root);
+                for (int i = 0; i < gui.Rows.Count - 1; i++)
                 {
-                    
-                    XElement size_screen = new XElement("size", "");
-                    XElement resolution = new XElement("resolution", "");
+
+                    XElement size_screen = new XElement("size");
+                    XElement resolution = new XElement("resolution");
                     XElement screen = new XElement("screen");
-                    XElement screen_type = new XElement("type", "");
-                    XElement manufacturer = new XElement("manufacturer", "");
-                    XElement element = new XElement("laptop", "");
+                    XElement screen_type = new XElement("type");
+                    XElement manufacturer = new XElement("manufacturer");
+                    XElement element = new XElement("laptop");
                     XElement procesor = new XElement("processor");
-                    XElement processor_name = new XElement("name", "");
-                    XElement physical_cores = new XElement("physical_cores", "");
-                    XElement clock_speed = new XElement("clock_speed", "");
-                    XElement ram = new XElement("ram", "");
+                    XElement processor_name = new XElement("name");
+                    XElement physical_cores = new XElement("physical_cores");
+                    XElement clock_speed = new XElement("clock_speed");
+                    XElement ram = new XElement("ram");
                     XElement disc = new XElement("disc");
-                    XElement storage = new XElement("storage", "");
-                    XElement graphic_card = new XElement("graphic_card", "");
-                    XElement name_card = new XElement("name", "");
-                    XElement gpu_memory = new XElement("memory", "");
-                    XElement os = new XElement("os", "");
-                    XElement disc_reader = new XElement("disc_reader", "");
+                    XElement storage = new XElement("storage");
+                    XElement graphic_card = new XElement("graphic_card");
+                    XElement name_card = new XElement("name");
+                    XElement gpu_memory = new XElement("memory");
+                    XElement os = new XElement("os");
+                    XElement disc_reader = new XElement("disc_reader");
+
                     screen.Add(resolution);
                     root.Add(element);
                     element.Add(manufacturer);
@@ -130,7 +132,12 @@ namespace Integracja
                     element.Add(disc_reader);
                     screen.Add(size_screen);
                     screen.Add(screen_type);
-                   
+
+
+
+
+
+
                     int licznik = i + 1;
                     element.SetAttributeValue("id", licznik);
                     manufacturer.Add(gui.Rows[i].Cells[0].Value);
@@ -143,23 +150,19 @@ namespace Integracja
                     physical_cores.Add(gui.Rows[i].Cells[6].Value);
                     ram.Add(gui.Rows[i].Cells[8].Value);
                     storage.Add(gui.Rows[i].Cells[9].Value);
-                    disc.SetAttributeValue("type",gui.Rows[i].Cells[10].Value);
+                    disc.SetAttributeValue("type", gui.Rows[i].Cells[10].Value);
                     name_card.Add(gui.Rows[i].Cells[11].Value);
                     gpu_memory.Add(gui.Rows[i].Cells[12].Value);
                     os.Add(gui.Rows[i].Cells[13].Value);
                     disc_reader.Add(gui.Rows[i].Cells[14].Value);
 
-
-
-                   
-
                 }
                 document.Save(filePath);
-            }
-            
-              
-           
+             
+                AddCustomInformation();
 
+
+            }
         }
         public void RemoveAddInformation()
         {
@@ -170,6 +173,19 @@ namespace Integracja
                     if (gui.Rows[i].Cells[j].Value == "brak informacji")
                     {
                         gui.Rows[i].Cells[j].Value = "";
+                    }
+                }
+            }
+        }
+        public void AddCustomInformation()
+        {
+            for (int i = 0; i < gui.Rows.Count; i++)
+            {
+                for (int j = 0; j < gui.Columns.Count; j++)
+                {
+                    if (gui.Rows[i].Cells[j].Value == "")
+                    {
+                        gui.Rows[i].Cells[j].Value = "brak informacji";
                     }
                 }
             }
