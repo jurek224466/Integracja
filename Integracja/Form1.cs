@@ -20,7 +20,7 @@ namespace Integracja
     {
         int k;
         int a = 0;
-        DataTable table = new DataTable("laptops");
+        
        
         public Form1()
         {
@@ -46,7 +46,7 @@ namespace Integracja
             open.Filter = "Pliki tekstowe (*.txt)|*.txt";
             if (open.ShowDialog() == DialogResult.OK)
             {
-                Files files = new Files(dataGridView);
+                FilesMethods files = new FilesMethods(dataGridView);
                 files.ImportTextFileToAplication(open.FileName);
 
             }
@@ -62,7 +62,7 @@ namespace Integracja
             save.Filter = "Pliki tekstowe (*.txt)|*.txt";
             if (save.ShowDialog() == DialogResult.OK)
             {
-                Files files = new Files(dataGridView);
+                FilesMethods files = new FilesMethods(dataGridView);
                 files.ExportDatatoTextFile(save.FileName);
 
             }

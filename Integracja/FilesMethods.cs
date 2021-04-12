@@ -7,11 +7,11 @@ using System.Windows.Forms;
 
 namespace Integracja
 {
-    class Files
+    class FilesMethods
     {
         DataGridView gui = new DataGridView();
 
-        public Files(DataGridView item)
+        public FilesMethods(DataGridView item)
         {
             gui = item;
         }
@@ -29,21 +29,15 @@ namespace Integracja
                 i = gui.Rows.Add();
                 for (int j = 0; j < values.Length - 1; j++)
                 {
-                    if (values[j] == null || values[j] == "")
-                    {
-                        gui.Rows[i].Cells[j].Value = "brak informacji";
-
-                    }
-                    else
-                    {
+                 
                         gui.Rows[i].Cells[j].Value = values[j].ToString();
-                    }
+                    
 
 
                 }
-
+                
             }
-
+            AddCustomInformation();
 
 
 
@@ -55,7 +49,7 @@ namespace Integracja
 
             /*var headers = dataGridView.Columns.Cast<DataGridViewColumn>(); dodawanie nagłówków do plików
             sb.AppendLine(string.Join(";", headers.Select(column => "\"" + column.HeaderText + "\"").ToArray()));*/
-
+            RemoveAddInformation();
             foreach (DataGridViewRow row in gui.Rows)
             {
                 if (row.Index < gui.Rows.Count - 1)
@@ -69,7 +63,35 @@ namespace Integracja
 
 
             }
+          
             System.IO.File.WriteAllText(filePath, sb.ToString());
+            AddCustomInformation();
+        }
+        private void RemoveAddInformation()
+        {
+            for (int i = 0; i < gui.Rows.Count; i++)
+            {
+                for (int j = 0; j < gui.Columns.Count; j++)
+                {
+                    if (gui.Rows[i].Cells[j].Value == "brak informacji")
+                    {
+                        gui.Rows[i].Cells[j].Value = "";
+                    }
+                }
+            }
+        }
+        private void AddCustomInformation()
+        {
+            for (int i = 0; i < gui.Rows.Count; i++)
+            {
+                for (int j = 0; j < gui.Columns.Count; j++)
+                {
+                    if (gui.Rows[i].Cells[j].Value == "")
+                    {
+                        gui.Rows[i].Cells[j].Value = "brak informacji";
+                    }
+                }
+            }
         }
     }
 }
