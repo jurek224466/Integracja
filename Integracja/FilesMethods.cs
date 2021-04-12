@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace Integracja
 
                 values = lines[i].Split(';');
                 i = gui.Rows.Add();
-                for (int j = 0; j < values.Length - 1; j++)
+                for (int j = 0; j < values.Length-1; j++)
                 {
                  
                         gui.Rows[i].Cells[j].Value = values[j].ToString();
@@ -45,27 +46,22 @@ namespace Integracja
         }
         public void ExportDatatoTextFile(String filePath)
         {
-            var sb = new StringBuilder();
+            TextWriter writer = new StreamWriter(filePath);
 
             /*var headers = dataGridView.Columns.Cast<DataGridViewColumn>(); dodawanie nagłówków do plików
             sb.AppendLine(string.Join(";", headers.Select(column => "\"" + column.HeaderText + "\"").ToArray()));*/
             RemoveAddInformation();
-            foreach (DataGridViewRow row in gui.Rows)
+            for(int i = 0; i < gui.Rows.Count-1; i++)
             {
-                if (row.Index < gui.Rows.Count - 1)
+                for(int j = 0; j < gui.Columns.Count; j++)
                 {
-                    Console.WriteLine("Row index : " + row.Index);
-                    var cells = row.Cells.Cast<DataGridViewCell>();
-                    sb.AppendLine(string.Join(";", cells.Select(cell => "\"" + cell.Value + "\"").ToArray()));
-
+                    writer.Write(gui.Rows[i].Cells[j].Value + ";");
                 }
-
-
-
+                writer.WriteLine("");
             }
-          
-            System.IO.File.WriteAllText(filePath, sb.ToString());
+            writer.Close();
             AddCustomInformation();
+           
         }
         private void RemoveAddInformation()
         {

@@ -56,13 +56,14 @@ namespace Integracja
                     gui.Rows[values - 1].Cells[12].Value = gpu_memory;
                     string disc_storage = node.SelectSingleNode("disc").SelectSingleNode("storage").InnerText;
                     gui.Rows[values - 1].Cells[9].Value = disc_storage;
-                    string disc_type = node.SelectSingleNode("disc").SelectSingleNode("storage").Attributes["type"].Value;
+                    string disc_type = node.SelectSingleNode("disc").Attributes["type"].Value;
                     gui.Rows[values - 1].Cells[10].Value = disc_type;
                     string os_name = node.SelectSingleNode("os").InnerText;
                     gui.Rows[values - 1].Cells[13].Value = os_name;
                     string disc_reader = node.SelectSingleNode("disc_reader").InnerText;
                     gui.Rows[values - 1].Cells[14].Value = disc_reader;
-                   
+                    
+                    gui.Rows.Add();
                     
                 }
                
@@ -71,7 +72,7 @@ namespace Integracja
 
 
             }
-            
+            AddCustomInformation(); 
         }
         public void ExportXML()
         {
@@ -112,12 +113,10 @@ namespace Integracja
                     XElement gpu_memory = new XElement("memory");
                     XElement os = new XElement("os");
                     XElement disc_reader = new XElement("disc_reader");
-
-                    screen.Add(resolution);
+                screen.Add(resolution);
                     root.Add(element);
                     element.Add(manufacturer);
                     element.Add(screen);
-
                     procesor.Add(processor_name);
                     graphic_card.Add(name_card);
                     element.Add(ram);
@@ -132,12 +131,6 @@ namespace Integracja
                     element.Add(disc_reader);
                     screen.Add(size_screen);
                     screen.Add(screen_type);
-
-
-
-
-
-
                     int licznik = i + 1;
                     element.SetAttributeValue("id", licznik);
                     manufacturer.Add(gui.Rows[i].Cells[0].Value);
