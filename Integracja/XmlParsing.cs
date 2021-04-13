@@ -27,7 +27,10 @@ namespace Integracja
                 XmlDocument serverDoc = new XmlDocument();
                 serverDoc.Load(open.FileName);
                 XmlNodeList xml = serverDoc.SelectNodes("Laptops/laptop");
-                gui.Rows.Add();
+               
+                    gui.Rows.Add();
+                
+               
                 foreach (XmlNode node in xml)
                 {
 
@@ -61,8 +64,7 @@ namespace Integracja
                     string os_name = node.SelectSingleNode("os").InnerText;
                     gui.Rows[values - 1].Cells[13].Value = os_name;
                     string disc_reader = node.SelectSingleNode("disc_reader").InnerText;
-                    gui.Rows[values - 1].Cells[14].Value = disc_reader;
-                    
+                    gui.Rows[values - 1].Cells[14].Value = disc_reader; 
                     gui.Rows.Add();
                     
                 }
@@ -72,7 +74,11 @@ namespace Integracja
 
 
             }
-            AddCustomInformation(); 
+            
+            
+            AddCustomInformation();
+            
+           
         }
         public void ExportXML()
         {

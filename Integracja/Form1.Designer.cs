@@ -30,10 +30,6 @@ namespace Integracja
         private void InitializeComponent()
         {
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.read_file = new System.Windows.Forms.Button();
-            this.save_file = new System.Windows.Forms.Button();
-            this.xmlExport = new System.Windows.Forms.Button();
-            this.importXML = new System.Windows.Forms.Button();
             this.brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.screen_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.screen_resolution = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,11 +45,16 @@ namespace Integracja
             this.gpu_ram = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.os = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optical_drive = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.read_file = new System.Windows.Forms.Button();
+            this.save_file = new System.Windows.Forms.Button();
+            this.xmlExport = new System.Windows.Forms.Button();
+            this.importXML = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView
             // 
+            this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.brand,
@@ -77,46 +78,6 @@ namespace Integracja
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(1600, 814);
             this.dataGridView.TabIndex = 0;
-            // 
-            // read_file
-            // 
-            this.read_file.Location = new System.Drawing.Point(77, 29);
-            this.read_file.Name = "read_file";
-            this.read_file.Size = new System.Drawing.Size(128, 46);
-            this.read_file.TabIndex = 1;
-            this.read_file.Text = "Wczytaj z pliku";
-            this.read_file.UseVisualStyleBackColor = true;
-            this.read_file.Click += new System.EventHandler(this.read_file_Click);
-            // 
-            // save_file
-            // 
-            this.save_file.Location = new System.Drawing.Point(221, 27);
-            this.save_file.Name = "save_file";
-            this.save_file.Size = new System.Drawing.Size(179, 47);
-            this.save_file.TabIndex = 2;
-            this.save_file.Text = "Zapisz do pliku";
-            this.save_file.UseVisualStyleBackColor = true;
-            this.save_file.Click += new System.EventHandler(this.save_file_Click);
-            // 
-            // xmlExport
-            // 
-            this.xmlExport.Location = new System.Drawing.Point(406, 30);
-            this.xmlExport.Name = "xmlExport";
-            this.xmlExport.Size = new System.Drawing.Size(124, 44);
-            this.xmlExport.TabIndex = 3;
-            this.xmlExport.Text = "Exportuj do XML";
-            this.xmlExport.UseVisualStyleBackColor = true;
-            this.xmlExport.Click += new System.EventHandler(this.xmlExport_Click);
-            // 
-            // importXML
-            // 
-            this.importXML.Location = new System.Drawing.Point(548, 30);
-            this.importXML.Name = "importXML";
-            this.importXML.Size = new System.Drawing.Size(140, 47);
-            this.importXML.TabIndex = 4;
-            this.importXML.Text = "Importuj do XML";
-            this.importXML.UseVisualStyleBackColor = true;
-            this.importXML.Click += new System.EventHandler(this.importXML_Click);
             // 
             // brand
             // 
@@ -192,6 +153,46 @@ namespace Integracja
             // 
             this.optical_drive.HeaderText = "Napęd optyczny";
             this.optical_drive.Name = "optical_drive";
+            // 
+            // read_file
+            // 
+            this.read_file.Location = new System.Drawing.Point(77, 29);
+            this.read_file.Name = "read_file";
+            this.read_file.Size = new System.Drawing.Size(128, 46);
+            this.read_file.TabIndex = 1;
+            this.read_file.Text = "Wczytaj z pliku";
+            this.read_file.UseVisualStyleBackColor = true;
+            this.read_file.Click += new System.EventHandler(this.read_file_Click);
+            // 
+            // save_file
+            // 
+            this.save_file.Location = new System.Drawing.Point(221, 27);
+            this.save_file.Name = "save_file";
+            this.save_file.Size = new System.Drawing.Size(179, 47);
+            this.save_file.TabIndex = 2;
+            this.save_file.Text = "Zapisz do pliku";
+            this.save_file.UseVisualStyleBackColor = true;
+            this.save_file.Click += new System.EventHandler(this.save_file_Click);
+            // 
+            // xmlExport
+            // 
+            this.xmlExport.Location = new System.Drawing.Point(406, 30);
+            this.xmlExport.Name = "xmlExport";
+            this.xmlExport.Size = new System.Drawing.Size(124, 44);
+            this.xmlExport.TabIndex = 3;
+            this.xmlExport.Text = "Exportuj do XML";
+            this.xmlExport.UseVisualStyleBackColor = true;
+            this.xmlExport.Click += new System.EventHandler(this.xmlExport_Click);
+            // 
+            // importXML
+            // 
+            this.importXML.Location = new System.Drawing.Point(548, 30);
+            this.importXML.Name = "importXML";
+            this.importXML.Size = new System.Drawing.Size(140, 47);
+            this.importXML.TabIndex = 4;
+            this.importXML.Text = "Importuj do XML";
+            this.importXML.UseVisualStyleBackColor = true;
+            this.importXML.Click += new System.EventHandler(this.importXML_Click);
             // 
             // Form1
             // 
