@@ -97,5 +97,23 @@ namespace Integracja
 
 
         }
+        public void ChangeValues(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            if (dataGridView.Rows.Count>=2)
+            {
+                for (int i = 0; i < dataGridView.Columns.Count; i++)
+                {
+                    dataGridView.Rows[e.RowIndex].Cells[i].Style.BackColor = Color.Green;
+                }
+            }
+           
+           
+        }
+       public void CheckDuplicate(object sender, DataGridViewCellEventArgs e)
+        {
+         
+        }
+        
     }
 }

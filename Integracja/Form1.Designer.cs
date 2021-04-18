@@ -49,6 +49,8 @@ namespace Integracja
             this.save_file = new System.Windows.Forms.Button();
             this.xmlExport = new System.Windows.Forms.Button();
             this.importXML = new System.Windows.Forms.Button();
+            this.exportDB = new System.Windows.Forms.Button();
+            this.importFromDB = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,6 +58,7 @@ namespace Integracja
             // 
             this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.brand,
             this.screen_size,
@@ -194,11 +197,33 @@ namespace Integracja
             this.importXML.UseVisualStyleBackColor = true;
             this.importXML.Click += new System.EventHandler(this.importXML_Click);
             // 
+            // exportDB
+            // 
+            this.exportDB.Location = new System.Drawing.Point(703, 30);
+            this.exportDB.Name = "exportDB";
+            this.exportDB.Size = new System.Drawing.Size(94, 44);
+            this.exportDB.TabIndex = 5;
+            this.exportDB.Text = "Export to DataBase";
+            this.exportDB.UseVisualStyleBackColor = true;
+            this.exportDB.Click += new System.EventHandler(this.exportDB_Click);
+            // 
+            // importFromDB
+            // 
+            this.importFromDB.Location = new System.Drawing.Point(815, 30);
+            this.importFromDB.Name = "importFromDB";
+            this.importFromDB.Size = new System.Drawing.Size(105, 44);
+            this.importFromDB.TabIndex = 6;
+            this.importFromDB.Text = "Import from DataBase";
+            this.importFromDB.UseVisualStyleBackColor = true;
+            this.importFromDB.Click += new System.EventHandler(this.importFromDB_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1899, 901);
+            this.Controls.Add(this.importFromDB);
+            this.Controls.Add(this.exportDB);
             this.Controls.Add(this.importXML);
             this.Controls.Add(this.xmlExport);
             this.Controls.Add(this.save_file);
@@ -233,6 +258,8 @@ namespace Integracja
         private System.Windows.Forms.DataGridViewTextBoxColumn gpu_ram;
         private System.Windows.Forms.DataGridViewTextBoxColumn os;
         private System.Windows.Forms.DataGridViewTextBoxColumn optical_drive;
+        private System.Windows.Forms.Button exportDB;
+        private System.Windows.Forms.Button importFromDB;
     }
 }
 

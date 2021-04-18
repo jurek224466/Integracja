@@ -20,15 +20,33 @@ namespace Integracja
     {
         int k;
         int a = 0;
-        
-       
+
+        private GuiFormating guiFormating = new GuiFormating();
         public Form1()
         {
             InitializeComponent();
             dataGridView.CellValidating += DataGridView_CellValidating;
+            dataGridView.CellEndEdit += DataGridView_CellValueChanged;
+            dataGridView.RowsAdded += DataGridView_RowsAdded;
+          /*  guiFormating.setBaseColor(dataGridView);*/
         }
 
-       
+        private void DataGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            if (e.RowCount > 0)
+            {
+                dataGridView.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Gray;
+            }
+           
+        }
+
+        private void DataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            FormValidation validation = new FormValidation(dataGridView, this);
+            validation.ChangeValues(sender, e);
+            validation.CheckDuplicate(sender, e);
+
+        }
 
         private void DataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
@@ -38,6 +56,7 @@ namespace Integracja
            
            
         }
+       
 
         private void read_file_Click(object sender, EventArgs e)
         {
@@ -85,6 +104,18 @@ namespace Integracja
             XmlParsing import = new XmlParsing(dataGridView);
             import.ImportXML();
 
+        }
+
+        private void exportDB_Click(object sender, EventArgs e)
+        {
+            DataBase dataBase = new DataBase(dataGridView);
+            dataBase.ExportData();
+        }
+
+        private void importFromDB_Click(object sender, EventArgs e)
+        {
+            DataBase dataBase = new DataBase(dataGridView);
+            dataBase.ImportData();
         }
     }
 }
