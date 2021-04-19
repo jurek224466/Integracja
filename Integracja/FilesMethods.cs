@@ -48,8 +48,8 @@ namespace Integracja
         {
             TextWriter writer = new StreamWriter(filePath);
 
-            /*var headers = dataGridView.Columns.Cast<DataGridViewColumn>(); dodawanie nagłówków do plików
-            sb.AppendLine(string.Join(";", headers.Select(column => "\"" + column.HeaderText + "\"").ToArray()));*/
+            var headers = gui.Columns.Cast<DataGridViewColumn>(); //dodawanie nagłówków do plików
+            writer.WriteLine(string.Join(";", headers.Select(column => "\"" + column.HeaderText + "\"").ToArray()));
             RemoveAddInformation();
             for(int i = 0; i < gui.Rows.Count-1; i++)
             {
