@@ -33,18 +33,22 @@ namespace Integracja
 
         private void DataGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
+            FormValidation validation = new FormValidation(dataGridView, this);
             if (e.RowCount > 0)
             {
+                
                 dataGridView.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Gray;
+               
             }
-           
+            validation.CheckDuplicate();
         }
 
         private void DataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             FormValidation validation = new FormValidation(dataGridView, this);
+        
             validation.ChangeValues(sender, e);
-            validation.CheckDuplicate(sender, e);
+            
 
         }
 
@@ -53,8 +57,8 @@ namespace Integracja
            
                 FormValidation validation = new FormValidation(dataGridView, this);
                 validation.ValidateCelling(sender, e);
-           
-           
+               
+
         }
        
 

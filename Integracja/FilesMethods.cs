@@ -30,10 +30,7 @@ namespace Integracja
                 i = gui.Rows.Add();
                 for (int j = 0; j < values.Length-1; j++)
                 {
-                 
-                        gui.Rows[i].Cells[j].Value = values[j].ToString();
-                    
-
+                    gui.Rows[i].Cells[j].Value = values[j].ToString();
 
                 }
                 
