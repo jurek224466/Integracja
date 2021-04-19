@@ -12,13 +12,13 @@ namespace Integracja
     class FormValidation
     {
         private DataGridView dataGridView = new DataGridView();
-       
+
         private Form gui;
-        public FormValidation(DataGridView item,Form1 main_gui)
+        public FormValidation(DataGridView item, Form1 main_gui)
         {
             dataGridView = item;
             gui = main_gui;
-          
+
         }
         public void ValidateCelling(object sender, DataGridViewCellValidatingEventArgs e)
         {
@@ -99,49 +99,51 @@ namespace Integracja
         }
         public void ChangeValues(object sender, DataGridViewCellEventArgs e)
         {
-            
-            if (dataGridView.Rows.Count>=2)
+
+            if (dataGridView.Rows.Count >= 2)
             {
                 for (int i = 0; i < dataGridView.Columns.Count; i++)
                 {
                     dataGridView.Rows[e.RowIndex].Cells[i].Style.BackColor = Color.Green;
                 }
             }
-           
-           
+
+
         }
-       public void CheckDuplicate()
+        public void CheckDuplicate()
         {
-            bool isDuplicate;
-            if (dataGridView.Rows.Count > 1)
+            for (int currentRow = 0; currentRow < dataGridView.Rows.Count - 1; currentRow++)
             {
-                for (int nbRow = 0; nbRow < dataGridView.Rows.Count; nbRow++)
+                DataGridViewRow rowToCompare = dataGridView.Rows[currentRow];
+
+                for (int otherRow = currentRow + 1; otherRow <dataGridView.Rows.Count; otherRow++)
                 {
-                    for (int nbRowCompare = nbRow; nbRowCompare < dataGridView.Rows.Count; nbRowCompare++)
+                    DataGridViewRow row = dataGridView.Rows[otherRow];
+
+                    bool duplicateRow = true;
+
+                    for (int cellIndex = 0; cellIndex <row.Cells.Count; cellIndex++)
                     {
-                        isDuplicate = true;
-
-                        for (int nbCol = 0; nbCol < dataGridView.Rows[nbRow].Cells.Count; nbCol++)
+                        if (!rowToCompare.Cells[cellIndex].Value.Equals(row.Cells[cellIndex].Value))
                         {
-                            if (dataGridView[nbCol, nbRow].Value != dataGridView[nbCol, nbRowCompare])
-                            {
-                                isDuplicate = false;
-                                break;     //Exit for each column if they are not duplicate
-                            }
+                            duplicateRow = false;
+                            break;
                         }
+                    }
 
-                        if (isDuplicate)
+                    if (duplicateRow)
+                    {
+                        for(int color = 0; color < dataGridView.Columns.Count; color++)
                         {
-                            for (int i = 0; i < dataGridView.Columns.Count; i++)
-                            {
-                                dataGridView.Rows[nbRow].Cells[i].Style.BackColor = Color.Red;
-                            }
+                            dataGridView.Rows[otherRow].Cells[color].Style.BackColor = Color.Red;
                         }
+                        
+                        
                     }
                 }
             }
-           
         }
-        
     }
 }
+    
+

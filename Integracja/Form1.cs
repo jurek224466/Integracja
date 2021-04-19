@@ -38,9 +38,9 @@ namespace Integracja
             {
                 
                 dataGridView.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Gray;
-               
+                validation.CheckDuplicate();
             }
-            validation.CheckDuplicate();
+           
         }
 
         private void DataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -48,7 +48,7 @@ namespace Integracja
             FormValidation validation = new FormValidation(dataGridView, this);
         
             validation.ChangeValues(sender, e);
-            
+          
 
         }
 
@@ -57,7 +57,7 @@ namespace Integracja
            
                 FormValidation validation = new FormValidation(dataGridView, this);
                 validation.ValidateCelling(sender, e);
-               
+                validation.CheckDuplicate();
 
         }
        

@@ -18,6 +18,7 @@ namespace Integracja
         }
         public void ImportTextFileToAplication(String filePath)
         {
+
             gui.Rows.Clear();
             gui.ReadOnly = false;
             string[] lines = System.IO.File.ReadAllLines(filePath);
@@ -28,18 +29,14 @@ namespace Integracja
 
                 values = lines[i].Split(';');
                 i = gui.Rows.Add();
-                for (int j = 0; j < values.Length-1; j++)
+                for (int j = 0; j < values.Length - 1; j++)
                 {
                     gui.Rows[i].Cells[j].Value = values[j].ToString();
 
                 }
-                
+
             }
             AddCustomInformation();
-
-
-
-
         }
         public void ExportDatatoTextFile(String filePath)
         {

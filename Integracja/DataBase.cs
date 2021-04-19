@@ -16,6 +16,7 @@ namespace Integracja
 
 
         DataGridView gui = new DataGridView();
+        
         string connStr = "server=localhost;user=root;database=integracja_zad4;port=3306;password=;Allow User Variables=true";
         public DataBase(DataGridView data)
         {
@@ -71,10 +72,10 @@ namespace Integracja
                 Console.Error.WriteLine(mysql.Message);
             }
 
-            /*    catch (Exception ex)
-                {
-                    Console.WriteLine(ex.ToString());
-                }*/
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
 
 
             Console.WriteLine("Done.");
@@ -135,11 +136,11 @@ namespace Integracja
                 Console.Error.WriteLine(mysql.Message);
             }
 
-            /* catch (Exception ex)
-             {
-                 Console.WriteLine(ex.ToString());
-             }
- */
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
 
             Console.WriteLine("Done.");
         }
