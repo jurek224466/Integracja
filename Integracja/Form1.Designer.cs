@@ -51,6 +51,9 @@ namespace Integracja
             this.importXML = new System.Windows.Forms.Button();
             this.exportDB = new System.Windows.Forms.Button();
             this.importFromDB = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,11 +78,11 @@ namespace Integracja
             this.gpu_ram,
             this.os,
             this.optical_drive});
-            this.dataGridView.Location = new System.Drawing.Point(31, 96);
+            this.dataGridView.Location = new System.Drawing.Point(31, 142);
             this.dataGridView.MaximumSize = new System.Drawing.Size(1600, 1600);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(1600, 814);
+            this.dataGridView.Size = new System.Drawing.Size(1600, 768);
             this.dataGridView.TabIndex = 0;
             // 
             // brand
@@ -217,11 +220,31 @@ namespace Integracja
             this.importFromDB.UseVisualStyleBackColor = true;
             this.importFromDB.Click += new System.EventHandler(this.importFromDB_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(74, 99);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "label1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(197, 99);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "label2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1899, 901);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.importFromDB);
             this.Controls.Add(this.exportDB);
             this.Controls.Add(this.importXML);
@@ -234,6 +257,7 @@ namespace Integracja
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -260,6 +284,9 @@ namespace Integracja
         private System.Windows.Forms.DataGridViewTextBoxColumn optical_drive;
         private System.Windows.Forms.Button exportDB;
         private System.Windows.Forms.Button importFromDB;
+        private MySql.Data.MySqlClient.CustomInstaller customInstaller1;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label2;
     }
 }
 

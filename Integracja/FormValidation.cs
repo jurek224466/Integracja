@@ -13,11 +13,23 @@ namespace Integracja
     {
         private DataGridView dataGridView = new DataGridView();
 
-        private Form gui;
+        private Form1 gui = new Form1();
+        Label label1 = new Label();
+        Label label2 = new Label();
         public FormValidation(DataGridView item, Form1 main_gui)
         {
             dataGridView = item;
             gui = main_gui;
+
+        }
+        public FormValidation(DataGridView item)
+        {
+            dataGridView = item;
+        }
+        public FormValidation(Label label1, Label label2)
+        {
+            this.label1 = label1;
+            this.label2 = label2;
 
         }
         public void ValidateCelling(object sender, DataGridViewCellValidatingEventArgs e)
@@ -112,7 +124,8 @@ namespace Integracja
         }
         public void CheckDuplicate()
         {
-            for (int currentRow = 0; currentRow < dataGridView.Rows.Count - 1; currentRow++)
+            int duplicateRows = 0;
+            for (int currentRow = 0; currentRow <dataGridView.Rows.Count; currentRow++)
             {
                 DataGridViewRow rowToCompare = dataGridView.Rows[currentRow];
 
@@ -133,12 +146,41 @@ namespace Integracja
 
                     if (duplicateRow)
                     {
+                        duplicateRows++;
+                        gui.label2.Text = "Liczba duplikatów: " + duplicateRows;
+                        Console.WriteLine("Row duplicated"+otherRow);
                         for(int color = 0; color < dataGridView.Columns.Count; color++)
                         {
                             dataGridView.Rows[otherRow].Cells[color].Style.BackColor = Color.Red;
                         }
                         
                         
+                    }
+                }
+            }
+        }
+        public void RemoveAddInformation()
+        {
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                for (int j = 0; j < dataGridView.Columns.Count; j++)
+                {
+                    if (dataGridView.Rows[i].Cells[j].Value == "brak informacji")
+                    {
+                        dataGridView.Rows[i].Cells[j].Value = "";
+                    }
+                }
+            }
+        }
+        public void AddCustomInformation()
+        {
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                for (int j = 0; j < dataGridView.Columns.Count; j++)
+                {
+                    if (dataGridView.Rows[i].Cells[j].Value == "")
+                    {
+                        dataGridView.Rows[i].Cells[j].Value = "brak informacji";
                     }
                 }
             }

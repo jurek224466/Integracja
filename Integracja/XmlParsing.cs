@@ -77,7 +77,7 @@ namespace Integracja
             
             
             AddCustomInformation();
-            
+           
            
         }
         public void ExportXML()

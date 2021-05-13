@@ -11,11 +11,13 @@ namespace Integracja
     class FilesMethods
     {
         DataGridView gui = new DataGridView();
-
+        FormValidation validation;
         public FilesMethods(DataGridView item)
         {
             gui = item;
+            validation = new FormValidation(gui);
         }
+       
         public void ImportTextFileToAplication(String filePath)
         {
 
@@ -36,15 +38,15 @@ namespace Integracja
                 }
 
             }
-            AddCustomInformation();
+            validation.AddCustomInformation();
         }
         public void ExportDatatoTextFile(String filePath)
         {
             TextWriter writer = new StreamWriter(filePath);
 
-            var headers = gui.Columns.Cast<DataGridViewColumn>(); //dodawanie nagłówków do plików
-            writer.WriteLine(string.Join(";", headers.Select(column => "\"" + column.HeaderText + "\"").ToArray()));
-            RemoveAddInformation();
+          /*  var headers = gui.Columns.Cast<DataGridViewColumn>(); //dodawanie nagłówków do plików
+            writer.WriteLine(string.Join(";", headers.Select(column => "\"" + column.HeaderText + "\"").ToArray()));*/
+            validation.RemoveAddInformation();
             for(int i = 0; i < gui.Rows.Count-1; i++)
             {
                 for(int j = 0; j < gui.Columns.Count; j++)
@@ -54,34 +56,10 @@ namespace Integracja
                 writer.WriteLine("");
             }
             writer.Close();
-            AddCustomInformation();
+           
+            validation.AddCustomInformation();
            
         }
-        private void RemoveAddInformation()
-        {
-            for (int i = 0; i < gui.Rows.Count; i++)
-            {
-                for (int j = 0; j < gui.Columns.Count; j++)
-                {
-                    if (gui.Rows[i].Cells[j].Value == "brak informacji")
-                    {
-                        gui.Rows[i].Cells[j].Value = "";
-                    }
-                }
-            }
-        }
-        private void AddCustomInformation()
-        {
-            for (int i = 0; i < gui.Rows.Count; i++)
-            {
-                for (int j = 0; j < gui.Columns.Count; j++)
-                {
-                    if (gui.Rows[i].Cells[j].Value == "")
-                    {
-                        gui.Rows[i].Cells[j].Value = "brak informacji";
-                    }
-                }
-            }
-        }
+        
     }
 }

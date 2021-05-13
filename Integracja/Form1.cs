@@ -22,14 +22,21 @@ namespace Integracja
         int a = 0;
 
         private GuiFormating guiFormating = new GuiFormating();
+    
         public Form1()
         {
             InitializeComponent();
             dataGridView.CellValidating += DataGridView_CellValidating;
             dataGridView.CellEndEdit += DataGridView_CellValueChanged;
             dataGridView.RowsAdded += DataGridView_RowsAdded;
-          /*  guiFormating.setBaseColor(dataGridView);*/
+            /*  guiFormating.setBaseColor(dataGridView);*/
+            label1.Text = "";
+            label2.Text = "";
+           
+            
         }
+
+       
 
         private void DataGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
@@ -39,6 +46,7 @@ namespace Integracja
                 
                 dataGridView.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Gray;
                 validation.CheckDuplicate();
+                label1.Text = "Liczba rekordów: " + dataGridView.Rows.Count;
             }
            
         }
@@ -54,8 +62,9 @@ namespace Integracja
 
         private void DataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-           
-                FormValidation validation = new FormValidation(dataGridView, this);
+
+            FormValidation validation = new FormValidation(dataGridView, this) ;
+
                 validation.ValidateCelling(sender, e);
                 validation.CheckDuplicate();
 

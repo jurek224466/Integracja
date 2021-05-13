@@ -16,7 +16,7 @@ namespace Integracja
 
 
         DataGridView gui = new DataGridView();
-        
+       
         string connStr = "server=localhost;user=root;database=integracja_zad4;port=3306;password=;Allow User Variables=true";
         public DataBase(DataGridView data)
         {
@@ -24,7 +24,7 @@ namespace Integracja
         }
         public void ImportData()
         {
-
+             FormValidation validation = new FormValidation(gui);
             MySqlConnection conn = new MySqlConnection(connStr);
             try
             {
@@ -64,8 +64,9 @@ namespace Integracja
                      }
 
                  }
-
+                validation.AddCustomInformation();
                 conn.Close();
+                
             }
             catch (MySqlException mysql)
             {
@@ -84,8 +85,9 @@ namespace Integracja
         public void ExportData()
         {
             string data = "";
-
+            FormValidation validation = new FormValidation(gui);
             MySqlConnection conn = new MySqlConnection(connStr);
+            validation.RemoveAddInformation();
             try
             {
                 MySqlCommand comm = new MySqlCommand();
@@ -145,10 +147,7 @@ namespace Integracja
             Console.WriteLine("Done.");
         }
 
-        public void CheckDuplicate()
-        {
-          
-        }
+       
     }
 }
         
