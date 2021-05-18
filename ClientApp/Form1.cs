@@ -125,7 +125,7 @@ namespace ClientApp
                     List<String> brandList = new List<string>(10);
                     for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
                     {
-                        brandList.Add(dataGridView1.Rows[i].Cells[1].Value.ToString());
+                        brandList.Add(dataGridView1.Rows[i].Cells[0].Value.ToString());
                     }
                     List<String> distinctBrand = brandList.Distinct().ToList();
                     for (int i = 0; i < distinctBrand.Count; i++)
