@@ -33,11 +33,11 @@ namespace ClientApp.ServiceMethod {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceFiltering/filteringBrand", ReplyAction="http://tempuri.org/IServiceFiltering/filteringBrandResponse")]
         System.Threading.Tasks.Task<System.Data.DataTable> filteringBrandAsync(System.Data.DataTable dt, string brand);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceFiltering/AspectRadio", ReplyAction="http://tempuri.org/IServiceFiltering/AspectRadioResponse")]
-        string[] AspectRadio();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceFiltering/aspectRatioList", ReplyAction="http://tempuri.org/IServiceFiltering/aspectRatioListResponse")]
+        string[] aspectRatioList(System.Data.DataTable dt);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceFiltering/AspectRadio", ReplyAction="http://tempuri.org/IServiceFiltering/AspectRadioResponse")]
-        System.Threading.Tasks.Task<string[]> AspectRadioAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceFiltering/aspectRatioList", ReplyAction="http://tempuri.org/IServiceFiltering/aspectRatioListResponse")]
+        System.Threading.Tasks.Task<string[]> aspectRatioListAsync(System.Data.DataTable dt);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -91,12 +91,12 @@ namespace ClientApp.ServiceMethod {
             return base.Channel.filteringBrandAsync(dt, brand);
         }
         
-        public string[] AspectRadio() {
-            return base.Channel.AspectRadio();
+        public string[] aspectRatioList(System.Data.DataTable dt) {
+            return base.Channel.aspectRatioList(dt);
         }
         
-        public System.Threading.Tasks.Task<string[]> AspectRadioAsync() {
-            return base.Channel.AspectRadioAsync();
+        public System.Threading.Tasks.Task<string[]> aspectRatioListAsync(System.Data.DataTable dt) {
+            return base.Channel.aspectRatioListAsync(dt);
         }
     }
 }

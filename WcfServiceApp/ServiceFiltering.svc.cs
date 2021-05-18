@@ -22,6 +22,12 @@ namespace WcfServiceApp
             return new List<String>();
         }
 
+        public List<string> aspectRatioList(DataTable dt)
+        {
+            ServiceMethods methods = new ServiceMethods();
+           return methods.CalcAspectRadio(dt);
+        }
+
         public DataTable filteringBrand(DataTable dt,String brand)
         {
             ServiceMethods methods = new ServiceMethods();
@@ -33,6 +39,7 @@ namespace WcfServiceApp
         public DataTable FilteringScreenAspectRadio(DataTable dt,String brand)
         {
             ServiceMethods service = new ServiceMethods();
+            service.CalcAspectRadio(dt);
             return service.FilteringScreenAspectRadio(dt,brand);
         }
 

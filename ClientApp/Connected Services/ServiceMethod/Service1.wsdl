@@ -26,11 +26,11 @@
   <wsdl:message name="IServiceFiltering_filteringBrand_OutputMessage">
     <wsdl:part name="parameters" element="tns:filteringBrandResponse" />
   </wsdl:message>
-  <wsdl:message name="IServiceFiltering_AspectRadio_InputMessage">
-    <wsdl:part name="parameters" element="tns:AspectRadio" />
+  <wsdl:message name="IServiceFiltering_aspectRatioList_InputMessage">
+    <wsdl:part name="parameters" element="tns:aspectRatioList" />
   </wsdl:message>
-  <wsdl:message name="IServiceFiltering_AspectRadio_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AspectRadioResponse" />
+  <wsdl:message name="IServiceFiltering_aspectRatioList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:aspectRatioListResponse" />
   </wsdl:message>
   <wsdl:portType name="IServiceFiltering">
     <wsdl:operation name="GetDataFromDataBase">
@@ -45,9 +45,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceFiltering/filteringBrand" message="tns:IServiceFiltering_filteringBrand_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceFiltering/filteringBrandResponse" message="tns:IServiceFiltering_filteringBrand_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="AspectRadio">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceFiltering/AspectRadio" message="tns:IServiceFiltering_AspectRadio_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceFiltering/AspectRadioResponse" message="tns:IServiceFiltering_AspectRadio_OutputMessage" />
+    <wsdl:operation name="aspectRatioList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceFiltering/aspectRatioList" message="tns:IServiceFiltering_aspectRatioList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceFiltering/aspectRatioListResponse" message="tns:IServiceFiltering_aspectRatioList_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceFiltering" type="tns:IServiceFiltering">
@@ -79,8 +79,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="AspectRadio">
-      <soap:operation soapAction="http://tempuri.org/IServiceFiltering/AspectRadio" style="document" />
+    <wsdl:operation name="aspectRatioList">
+      <soap:operation soapAction="http://tempuri.org/IServiceFiltering/aspectRatioList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

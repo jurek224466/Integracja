@@ -23,7 +23,8 @@ namespace WcfServiceApp
 
         [OperationContract]
         DataTable filteringBrand(DataTable dt,String brand);
-       
+        [OperationContract]
+        List<String> aspectRatioList(DataTable dt);
         
 
 

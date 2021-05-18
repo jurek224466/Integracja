@@ -15,9 +15,7 @@ namespace ClientApp
         public Form1()
         {
             InitializeComponent();
-            ScreenChooseComboBox.Items.Add("16:9");
-            ScreenChooseComboBox.Items.Add("16:10");
-            ScreenChooseComboBox.Items.Add("4:3");
+            
             
 
         }
@@ -25,23 +23,6 @@ namespace ClientApp
         private void Form1_Load(object sender, EventArgs e)
         {
             
-            /* DataBaseConnection dataBaseConnection = new DataBaseConnection(dataGridView1, ScreenChooseComboBox, brandChooseComboBox);
-             dataBaseConnection.getData();*/
-            
-         /*   for(int i = 0; i < dataGridView1.Rows.Count; i++)
-            {
-
-                if (!lista.Contains(dataGridView1.Rows[i].Cells[0].Value.ToString()))
-                {
-                    lista.Add(dataGridView1.Rows[i].Cells[0].Value.ToString());
-                }
-                
-                
-            }
-            for (int j = 0; j < lista.Count; j++)
-            {
-                comboBox2.Items.Add(lista[j]);
-            }*/
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -119,15 +100,17 @@ namespace ClientApp
            
             ServiceFilteringClient client = new ServiceFilteringClient();
             DataTable dt = client.GetDataFromDataBase();
+            dataGridView1.Rows.Clear();
             laptopCount.Text = "Liczba laptopów: " + dt.Rows.Count;
             dataGridView1.Rows.Add();
+            int k = 0;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 dataGridView1.Rows.Add();
-                for (int j = 0; j < dt.Columns.Count; j++)
+                for (int j = 1,s=0; j < dt.Columns.Count && s<dt.Columns.Count; j++,s++)
                 {
-                    
-                    dataGridView1.Rows[i].Cells[j].Value = dt.Rows[i][j].ToString();
+                   
+                    dataGridView1.Rows[i].Cells[s].Value = dt.Rows[i][j].ToString();
                   
                 }
                 
@@ -154,11 +137,120 @@ namespace ClientApp
             }
            
         }
+        public void AddAspectRation()
+        {
+            DataTable dt = new DataTable("laptops");
+            int columnCount = 0;
+            List<int> columnNumbers = new List<int>();
+
+            foreach (DataGridViewColumn dataGridViewColumn in dataGridView1.Columns)
+            {
+
+
+                if (dataGridViewColumn.Visible)
+                {
+                    dt.Columns.Add(dataGridViewColumn.Name);
+                    columnNumbers.Add(columnCount);
+
+                }
+                columnCount++;
+            }
+
+            var cell = new object[columnNumbers.Count];
+            foreach (DataGridViewRow dataGridViewRow in dataGridView1.Rows)
+            {
+                int i = 0;
+                foreach (int a in columnNumbers)
+                {
+                    cell[i] = dataGridViewRow.Cells[a].Value;
+                    i++;
+                }
+                dt.Rows.Add(cell);
+            }
+            ServiceFilteringClient client = new ServiceFilteringClient();
+            string[] list = client.aspectRatioList(dt);
+            if (ScreenChooseComboBox.Items.Count == 0)
+            {
+                for (int i = 0; i < list.Length; i++)
+                {
+                    ScreenChooseComboBox.Items.Add(list[i]);
+                }
+            }
+           
+        }
 
         private void button3_Click(object sender, EventArgs e)
         {
             LoadDataFromDB();
+            AddCustomInformation();
             AddBrandsToComboBox();
+            AddAspectRation();
+          
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable("laptops");
+            int columnCount = 0;
+            List<int> columnNumbers = new List<int>();
+
+            foreach (DataGridViewColumn dataGridViewColumn in dataGridView1.Columns)
+            {
+
+
+                if (dataGridViewColumn.Visible)
+                {
+                    dt.Columns.Add(dataGridViewColumn.Name);
+                    columnNumbers.Add(columnCount);
+
+                }
+                columnCount++;
+            }
+
+            var cell = new object[columnNumbers.Count];
+            foreach (DataGridViewRow dataGridViewRow in dataGridView1.Rows)
+            {
+                int i = 0;
+                foreach (int a in columnNumbers)
+                {
+                    cell[i] = dataGridViewRow.Cells[a].Value;
+                    i++;
+                }
+                dt.Rows.Add(cell);
+            }
+            ServiceFilteringClient client = new ServiceFilteringClient();
+            DataTable values = client.FilteringScreenAspectRadio(dt,ScreenChoose);
+            dataGridView1.Rows.Clear();
+            dataGridView1.Rows.Add();
+            for (int i = 0; i < values.Rows.Count; i++)
+            {
+                dataGridView1.Rows.Add();
+                for (int j = 0; j < values.Columns.Count; j++)
+                {
+
+                    dataGridView1.Rows[i].Cells[j].Value = values.Rows[i][j].ToString();
+                }
+
+            }
+            laptopCount.Text = "Liczba laptopów: " + values.Rows.Count;
+
+        }
+        public void AddCustomInformation()
+        {
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                {
+                    if (j != 2)
+                    { 
+                        if (dataGridView1.Rows[i].Cells[j].Value == "" || dataGridView1.Rows[i].Cells[j].Value == "0")
+                        {
+                            dataGridView1.Rows[i].Cells[j].Value = "brak informacji";
+                        }
+                    }
+                    
+                }
+            }
         }
     }
 }
