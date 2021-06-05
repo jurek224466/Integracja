@@ -37,7 +37,6 @@ namespace ClientApp
             this.ScreenChooseComboBox = new System.Windows.Forms.ComboBox();
             this.brandChooseComboBox = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button3 = new System.Windows.Forms.Button();
             this.brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.screen_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.screen_resolution = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +52,7 @@ namespace ClientApp
             this.gpu_ram = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.os = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optical_drive = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -150,16 +150,6 @@ namespace ClientApp
             this.dataGridView1.Size = new System.Drawing.Size(1600, 768);
             this.dataGridView1.TabIndex = 0;
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(549, 49);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(89, 40);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Załaduj dane z serwera";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // brand
             // 
             this.brand.HeaderText = "Firma";
@@ -235,6 +225,16 @@ namespace ClientApp
             this.optical_drive.HeaderText = "Napęd optyczny";
             this.optical_drive.Name = "optical_drive";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(549, 49);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(89, 40);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Załaduj dane z serwera";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,11 +265,9 @@ namespace ClientApp
         private System.Windows.Forms.Label laptopCount;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox ScreenChooseComboBox;
         private System.Windows.Forms.ComboBox brandChooseComboBox;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridViewTextBoxColumn brand;
         private System.Windows.Forms.DataGridViewTextBoxColumn screen_size;
         private System.Windows.Forms.DataGridViewTextBoxColumn screen_resolution;
@@ -285,6 +283,8 @@ namespace ClientApp
         private System.Windows.Forms.DataGridViewTextBoxColumn gpu_ram;
         private System.Windows.Forms.DataGridViewTextBoxColumn os;
         private System.Windows.Forms.DataGridViewTextBoxColumn optical_drive;
+        public System.Windows.Forms.Button button2;
+        public System.Windows.Forms.Button button3;
     }
 }
 

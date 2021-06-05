@@ -54,13 +54,13 @@ namespace Integracja
                                  int cells = gui.Rows[row].Cells.Count;
                                 Console.WriteLine("Index: " + j + " " + rdr[j]);
                                 gui.Rows[row].Cells[j].Value = rdr[j+1];
-
+                                
 
                             }
 
                          }
                          row++;
-                       gui.Rows.Add();
+                        gui.Rows.Add();
                      }
 
                  }

@@ -1,7 +1,7 @@
 ﻿
 namespace Integracja
 {
-    partial class Form1
+    partial class IntegracjaForm
     {
         /// <summary>
         /// Wymagana zmienna projektanta.
@@ -84,24 +84,29 @@ namespace Integracja
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(1600, 768);
             this.dataGridView.TabIndex = 0;
+            this.dataGridView.VirtualMode = true;
             // 
             // brand
             // 
+            this.brand.DataPropertyName = "brand";
             this.brand.HeaderText = "Firma";
             this.brand.Name = "brand";
             // 
             // screen_size
             // 
+            this.screen_size.DataPropertyName = "screen_size";
             this.screen_size.HeaderText = "Wielkosc ";
             this.screen_size.Name = "screen_size";
             // 
             // screen_resolution
             // 
+            this.screen_resolution.DataPropertyName = "screen_resolution";
             this.screen_resolution.HeaderText = "Rozdzielczosc";
             this.screen_resolution.Name = "screen_resolution";
             // 
             // type_screen
             // 
+            this.type_screen.DataPropertyName = "screen_resolution";
             this.type_screen.HeaderText = "Typ ekranu";
             this.type_screen.Name = "type_screen";
             // 
@@ -238,7 +243,7 @@ namespace Integracja
             this.label2.TabIndex = 8;
             this.label2.Text = "label2";
             // 
-            // Form1
+            // IntegracjaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -252,7 +257,7 @@ namespace Integracja
             this.Controls.Add(this.save_file);
             this.Controls.Add(this.read_file);
             this.Controls.Add(this.dataGridView);
-            this.Name = "Form1";
+            this.Name = "IntegracjaForm";
             this.Text = "Integracja- Jerzy Antoniuk";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
@@ -267,6 +272,11 @@ namespace Integracja
         private System.Windows.Forms.Button xmlExport;
         private System.Windows.Forms.Button importXML;
         public System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.Button exportDB;
+        private MySql.Data.MySqlClient.CustomInstaller customInstaller1;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Button importFromDB;
         private System.Windows.Forms.DataGridViewTextBoxColumn brand;
         private System.Windows.Forms.DataGridViewTextBoxColumn screen_size;
         private System.Windows.Forms.DataGridViewTextBoxColumn screen_resolution;
@@ -282,11 +292,6 @@ namespace Integracja
         private System.Windows.Forms.DataGridViewTextBoxColumn gpu_ram;
         private System.Windows.Forms.DataGridViewTextBoxColumn os;
         private System.Windows.Forms.DataGridViewTextBoxColumn optical_drive;
-        private System.Windows.Forms.Button exportDB;
-        private System.Windows.Forms.Button importFromDB;
-        private MySql.Data.MySqlClient.CustomInstaller customInstaller1;
-        public System.Windows.Forms.Label label1;
-        public System.Windows.Forms.Label label2;
     }
 }
 

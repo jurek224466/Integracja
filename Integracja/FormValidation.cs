@@ -13,10 +13,10 @@ namespace Integracja
     {
         private DataGridView dataGridView = new DataGridView();
 
-        private Form1 gui = new Form1();
+        private IntegracjaForm gui = new IntegracjaForm();
         Label label1 = new Label();
         Label label2 = new Label();
-        public FormValidation(DataGridView item, Form1 main_gui)
+        public FormValidation(DataGridView item, IntegracjaForm main_gui)
         {
             dataGridView = item;
             gui = main_gui;

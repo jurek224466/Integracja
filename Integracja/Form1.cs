@@ -16,16 +16,17 @@ using System.Xml.Serialization;
 
 namespace Integracja
 {
-    public partial class Form1 : Form
+    public partial class IntegracjaForm : Form
     {
         int k;
         int a = 0;
 
         private GuiFormating guiFormating = new GuiFormating();
     
-        public Form1()
+        public IntegracjaForm()
         {
             InitializeComponent();
+            dataGridView.VirtualMode = false;
             dataGridView.CellValidating += DataGridView_CellValidating;
             dataGridView.CellEndEdit += DataGridView_CellValueChanged;
             dataGridView.RowsAdded += DataGridView_RowsAdded;
@@ -129,7 +130,9 @@ namespace Integracja
         {
             DataBase dataBase = new DataBase(dataGridView);
             dataBase.ImportData();
+            
         }
+    
     }
 }
 

@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integracja", "Integracja\Integracja.csproj", "{B0F980E5-1E91-4335-B5AF-0ED2A7316F53}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EFFFB116-B1A8-4889-AE14-9C2AA3634C8E} = {EFFFB116-B1A8-4889-AE14-9C2AA3634C8E}
+		{F5E1E364-FA61-45D0-8964-C54A3EDAF26B} = {F5E1E364-FA61-45D0-8964-C54A3EDAF26B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfServiceApp", "WcfServiceApp\WcfServiceApp.csproj", "{F5E1E364-FA61-45D0-8964-C54A3EDAF26B}"
 EndProject
@@ -11,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientApp", "ClientApp\Clie
 	ProjectSection(ProjectDependencies) = postProject
 		{F5E1E364-FA61-45D0-8964-C54A3EDAF26B} = {F5E1E364-FA61-45D0-8964-C54A3EDAF26B}
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUITesting", "GUITesting\GUITesting.csproj", "{3378241C-83E6-4BB3-B2FA-1C5D451E164E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +36,10 @@ Global
 		{EFFFB116-B1A8-4889-AE14-9C2AA3634C8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFFFB116-B1A8-4889-AE14-9C2AA3634C8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFFFB116-B1A8-4889-AE14-9C2AA3634C8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3378241C-83E6-4BB3-B2FA-1C5D451E164E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3378241C-83E6-4BB3-B2FA-1C5D451E164E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3378241C-83E6-4BB3-B2FA-1C5D451E164E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3378241C-83E6-4BB3-B2FA-1C5D451E164E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
